@@ -80,10 +80,10 @@ public class CharacterStats : EntityStats
                     knockDirection = (this.transform.position - attackerPos).normalized;
                     //Debug.LogError("knockDirection: " + knockDirection);
 
-                    //Debug.DrawLine(transform.position, (transform.position + knockDirection * 10), Color.red, Mathf.Infinity); //show line for knocback
-
                     knockVelocity = knockDirection * attackerKnockback; //Get the correct amount of knockback
                     //Debug.LogError("knockVelocity: " + knockVelocity);
+
+                    Debug.DrawLine(transform.position, (transform.position + (knockDirection * attackerKnockback)), Color.red, 5f); //show line for knocback
 
                     if (routineKnockback != null)
                     {

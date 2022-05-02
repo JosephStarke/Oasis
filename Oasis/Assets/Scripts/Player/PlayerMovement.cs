@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.Networking;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject body;
     [SerializeField] private Vector2 originalScaleBody;
     private Vector2 moveDirection; //Uses move x and y together
+    private Coroutine forcedMove;
+    private bool forcingMovement;
 
     Vector3 mousePos;
     private Vector3 targetPosition;
@@ -24,8 +28,11 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3Int currentCellPos, previousCellPos;
     #endregion
+
     public PlayerStats PlayerStats;
     public Animator animator;
+
+    public Camera playerCamera;
 
     private void Awake()
     {
@@ -33,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>(); //Sets rb to the players rigid body
         body = transform.GetChild(0).gameObject; //get the body
         animator = body.GetComponent<Animator>();
+        forcingMovement = false;
 
         originalScaleBody = body.transform.localScale;
     }
@@ -44,7 +52,10 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        Move(); //Physics Calculations better on Fixed
+        if (!forcingMovement)
+        {
+            Move(); //Physics Calculations better on Fixed
+        }
     }
 
     // do late so that the PlayerStats has a chance to move in update if necessary
@@ -93,12 +104,31 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void ForceMove(float time)
+    { 
+        if (forcedMove != null)
+        {
+            StopCoroutine(ForcedMove(time));
+        }
+
+        forcedMove = StartCoroutine(ForcedMove(time));
+    }
+
+    private IEnumerator ForcedMove(float time)
+    {
+        forcingMovement = true;
+        Debug.Log("Forcing player movement for " + time + " seconds...");
+        yield return new WaitForSeconds(time);
+        Debug.Log("No longer forcing player movement...");
+        forcingMovement = false;
+    }
+
     /*private void Collide()
     {
         rb.velocity = -rb.velocity; //Move PlayerStats back
         moveDirection = new Vector2(0, 0); //reset direction
     }*/
-    
+
     /*private void ProcessTileJump()
     {
         transform.rotation = Quaternion.LookRotation(Vector3.forward, targetPosition); //rotate towards direction

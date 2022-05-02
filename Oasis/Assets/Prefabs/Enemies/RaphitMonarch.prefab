@@ -335,7 +335,7 @@ GameObject:
   - component: {fileID: 8511033222164989595}
   - component: {fileID: 8511033222164989594}
   - component: {fileID: 8511033222164989596}
-  m_Layer: 11
+  m_Layer: 7
   m_Name: EnemySprite
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -407,7 +407,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!95 &8511033222164989596
 Animator:
   serializedVersion: 3

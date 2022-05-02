@@ -2,13 +2,13 @@ public class LesserRaphit : EnemyStats
 {
     public override void initializeStats()
     {
-        this.maxHealth.BaseValue = 1;
+        this.maxHealth.BaseValue = 3;
         this.attackDamage.BaseValue = 1;
         this.moveSpeed.BaseValue = 1;
         this.armor.BaseValue = 0;
         this.agility.BaseValue = 0;
         this.currentHealth = this.maxHealth.GetValue;
-        this.knockbackPower.BaseValue = 10f;
+        this.knockbackPower.BaseValue = 7.5f;
 
         //Enemy Specific Stats
         this.attackRange.BaseValue = 1.0f;

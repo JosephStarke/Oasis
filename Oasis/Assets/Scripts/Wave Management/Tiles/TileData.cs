@@ -10,4 +10,6 @@ public class TileData : ScriptableObject
     public bool isHealthy;
     public bool isPassable;
     public float speedModifer = 1f;
+
+    public bool isInfected;
 }
