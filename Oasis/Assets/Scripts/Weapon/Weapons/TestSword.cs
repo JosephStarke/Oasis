@@ -10,7 +10,7 @@ public class TestSword : WeaponStats
         this.moveSpeed.BaseValue = 0;
         this.armor.BaseValue = 0;
         this.agility.BaseValue = 0;
-        this.knockbackPower.BaseValue = 10;
+        this.knockbackPower.BaseValue = 100;
         #endregion
 
         #region Effects Weapon

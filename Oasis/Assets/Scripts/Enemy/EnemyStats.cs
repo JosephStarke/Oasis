@@ -51,7 +51,8 @@ public class EnemyStats : CharacterStats
         this.attackRange.BaseValue = 0;
         pather.canMove = false;
         rb.isKinematic = true;
-        Destroy(rb);
+        Destroy(gameObject.GetComponent<BoxCollider2D>());
+        Destroy(gameObject.GetComponent<Rigidbody2D>());
         animator.SetBool("isDead", true); //play the animation
         Destroy(gameObject, 1); //destroy the object
         Debug.Log(transform.name + " died as an enemy ");
@@ -81,8 +82,10 @@ public class EnemyStats : CharacterStats
 
     public override IEnumerator Knockback(Vector2 knockback)
     {
+        rb.isKinematic = false;
+
         Vector3 currentVelocity = pather.velocity;
-        float recoverTime = pather.maxAcceleration;
+        float recoverTime = pather.maxSpeed;
 
         //limiter variables
         Vector2 knockbackAbs = new Vector2(Mathf.Abs(knockback.x), Mathf.Abs(knockback.y));

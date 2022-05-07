@@ -137,8 +137,8 @@ public class MapManager : MonoBehaviour
         float translateY;
 
         //Generate multipliers
-        translateX = Random.Range(0f, (distanceToEdge * (gridScale.x/1.5f)));
-        translateY = Random.Range(0f, distanceToEdge * (gridScale.y/1.5f));
+        translateX = Random.Range(0f, (distanceToEdge * (gridScale.x/1.6f)));
+        translateY = Random.Range(0f, distanceToEdge * (gridScale.y/1.6f));
 
         //Genterate + or - (Coinflip)
         //X
@@ -199,10 +199,8 @@ public class MapManager : MonoBehaviour
         //Get Verticies edges
         EdgeCollider2D edgeCollider;
         edgeCollider = obstacleMap.gameObject.AddComponent<EdgeCollider2D>();
-        edgeCollider.points = new Vector2[7];
 
-
-        Vector2[] colliderpoints = edgeCollider.points;
+        Vector2[] colliderpoints = new Vector2[7];
 
         colliderpoints[0] = A;
         colliderpoints[1] = B;
@@ -218,6 +216,7 @@ public class MapManager : MonoBehaviour
             colliderpoints[i] /= gridScale;
         }
         edgeCollider.points = colliderpoints;
+        edgeCollider.edgeRadius = 0.25f;
     }
 
     public void DestroyTileWalls()

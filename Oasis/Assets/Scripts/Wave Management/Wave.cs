@@ -6,13 +6,13 @@ public class Wave : MonoBehaviour
 {   
     [SerializeField] private MapManager mapManager;
     [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private PlayerStats playerStats;
 
     public GameObject[] wave;
     public List<GameObject> enemies;
     public Vector2 tileCenter;
     public GameObject player;
     public GameObject infectedTileIndicator;
-    public float trapInitializationTime;
     public float forcedMoveTime;
 
     private bool canSpawn;
@@ -40,11 +40,9 @@ public class Wave : MonoBehaviour
         mapManager = GameObject.Find("GridManager").GetComponent<MapManager>();
 
         playerMovement = player.GetComponent<PlayerMovement>();
+        playerStats = player.GetComponent<PlayerStats>();
 
         infectedTileIndicator = Instantiate(infectedTileIndicator, transform.position, Quaternion.identity);
-
-        trapInitializationTime = 0.05f;
-        forcedMoveTime = 0.05f;
 
         canSpawn = true;
         spawning = false;
@@ -85,10 +83,12 @@ public class Wave : MonoBehaviour
             Destroy(infectedTileIndicator);
 
             //Force player into the edges
+            forcedMoveTime = 1f / playerStats.moveSpeed.GetValue;
+
             playerMovement.ForceMove(forcedMoveTime);
 
-            //Set up walls
-            StartCoroutine(TrapPlayer(trapInitializationTime));
+            //Set up walls wait for forced move time
+            StartCoroutine(TrapPlayer(forcedMoveTime));
 
             //Initialization time before spawning starts
 

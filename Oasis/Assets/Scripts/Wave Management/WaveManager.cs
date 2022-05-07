@@ -61,7 +61,8 @@ public class WaveManager : MonoBehaviour
 
         if (nextWaveTimer == 0) //IDEA: maybe don't force isSpawningComlpelte and only force wait timer
         {
-            //if this timer hits 0 and enemies from the previous wave are done spawning reset timer (curerntly min value of 5 seconds and max of 60)
+            //if this timer hits 0 and enemies from the previous wave are done spawning reset timer
+            //nextWaveTimer = 3f;
             nextWaveTimer = Mathf.Min
                 (
                 Random.Range(minWaitTime, Mathf.Pow(waveNumber, e) + minWaitTime),

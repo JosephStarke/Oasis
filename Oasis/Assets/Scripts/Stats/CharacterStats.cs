@@ -83,7 +83,7 @@ public class CharacterStats : EntityStats
                     knockVelocity = knockDirection * attackerKnockback; //Get the correct amount of knockback
                     //Debug.LogError("knockVelocity: " + knockVelocity);
 
-                    Debug.DrawLine(transform.position, (transform.position + (knockDirection * attackerKnockback)), Color.red, 5f); //show line for knocback
+                    //Debug.DrawLine(transform.position, (transform.position + (knockDirection * attackerKnockback)), Color.red, 5f); //show line for knocback
 
                     if (routineKnockback != null)
                     {

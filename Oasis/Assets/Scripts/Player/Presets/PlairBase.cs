@@ -5,7 +5,7 @@ public class PlairBase : PlayerStats
     // Start is called before the first frame update
     public override void initializeStats()
     {
-        this.maxHealth.BaseValue = 100;
+        this.maxHealth.BaseValue = 10;
         this.attackDamage.BaseValue = 0;
         this.moveSpeed.BaseValue = 3;
         this.armor.BaseValue = 0;
